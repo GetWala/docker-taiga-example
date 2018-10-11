@@ -6,6 +6,8 @@
 # https://github.com/taigaio/taiga-back/blob/master/settings/common.py
 from .docker import *
 
+import os
+
 PUBLIC_REGISTER_ENABLED = False
 DEBUG = False
 TEMPLATE_DEBUG = False
@@ -20,3 +22,17 @@ INSTALLED_APPS += ["taiga_contrib_slack"]
 
 ## For additional configuration options, look at:
 # https://github.com/taigaio/taiga-back/blob/master/settings/local.py.example
+
+#GMAIL SETTINGS EXAMPLE
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+IMPORTERS["trello"] = {
+   "active": True, # Enable or disable the importer
+   "api_key": os.getenv("TRELLO_API_KEY"),
+   "secret_key": os.getenv("TRELLO_API_SECRET_KEY")
+}
