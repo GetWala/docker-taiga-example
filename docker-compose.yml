@@ -8,9 +8,9 @@ services:
       - 443:443 # To enable SSL, uncomment this line. See "Enable SSL" below.
 
       # To enable taiga-events, uncomment the following lines:
-      # - events
-      # - rabbit
-      # - redis
+      - events
+      - rabbit
+      - redis
     environment:
       # Hostname for your instance of Taiga. Required.
       TAIGA_HOSTNAME: taiga.getwala.com
@@ -53,19 +53,19 @@ services:
   #     - ./pgdata:/var/lib/postgresql/data
 
   # To enable taiga-events, uncomment the following lines:
-  # rabbit:
-  #   image: rabbitmq:3
-  #   hostname: rabbit
+  rabbit:
+    image: rabbitmq:3
+    hostname: rabbit
   
-  # redis:
-  #   image: redis:3
+  redis:
+    image: redis:3
   
-  # celery:
-  #   image: celery
-  #   links:
-  #     - rabbit
+  celery:
+    image: celery
+    links:
+      - rabbit
   
-  # events:
-  #   image: benhutchins/taiga-events
-  #   links:
-  #     - rabbit
+  events:
+    image: benhutchins/taiga-events
+    links:
+      - rabbit
