@@ -29,7 +29,7 @@ services:
       # This is not great. I suggest using something on top of this
       # to enable SSL. See the example example-nginx-ssl.conf file
       # for an alternative way to enable SSL.
-      #TAIGA_SSL: 'True'
+      TAIGA_SSL: 'True'
 
       # Enable SSL externally, preferred method
       # TAIGA_SSL_BY_REVERSE_PROXY: 'True'
@@ -52,20 +52,20 @@ services:
   #     # Postgres data directory. This ensures the database is not lost.
   #     - ./pgdata:/var/lib/postgresql/data
 
-  To enable taiga-events, uncomment the following lines:
-  rabbit:
-    image: rabbitmq:3
-    hostname: rabbit
+  # To enable taiga-events, uncomment the following lines:
+  # rabbit:
+  #   image: rabbitmq:3
+  #   hostname: rabbit
   
-  redis:
-    image: redis:3
+  # redis:
+  #   image: redis:3
   
-  celery:
-    image: celery
-    links:
-      - rabbit
+  # celery:
+  #   image: celery
+  #   links:
+  #     - rabbit
   
-  events:
-    image: benhutchins/taiga-events
-    links:
-      - rabbit
+  # events:
+  #   image: benhutchins/taiga-events
+  #   links:
+  #     - rabbit
